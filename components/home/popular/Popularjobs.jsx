@@ -1,10 +1,10 @@
-import React from 'react'
+import { useState } from 'react';
 import { View, Text,TouchableOpacity,FlatList,ActivityIndicator } from 'react-native'
 import {useRouter} from 'expo-router'
 
 import styles from './popularjobs.style'
 import { COLORS, SIZES } from '../../../constants';
-import PopularjobsCard  from '../../common/cards/popular/PopularJobCard';
+import PopularJobsCard  from '../../common/cards/popular/PopularJobCard';
 
 import useFetch from '../../../hook/useFetch';
 
@@ -14,7 +14,7 @@ const Popularjobs = () => {
   const{ data,isLoading,error } = useFetch('search',{
     query: 'React Developer',
     num_pages:1
-  })
+  });
 
   //console.log(data);
 
@@ -36,7 +36,7 @@ const Popularjobs = () => {
           <FlatList
             data={data}
             renderItem={({ item }) => (
-              <PopularjobsCard key={item.job_id} item={item} />
+              <PopularJobsCard key={item.job_id} item={item} />
             )}
             keyExtractor={(item) => item.job_id}
             contentContainerStyle={{columnGap:SIZES.medium}}
